@@ -1,0 +1,28 @@
+B2=CONNPLEX SIGNATURE  —  AHMEDABAD
+B5=LUXURY RECLINER MULTIPLEX  •  INVESTOR ROI DASHBOARD  •  FOFO FRANCHISE MODEL
+B7=TOTAL INVESTMENT | D7=YEAR-1 NET PROFIT | F7=RETURN ON INVESTMENT | H7=PAYBACK PERIOD | J7=BLENDED OCCUPANCY
+B9=f:Investment!E18=38257000 | D9=f:'ROI Calculation'!D34=11741829.120000005 | F9=f:'ROI Calculation'!D40=0.30691975638445262 | H9=f:'ROI Calculation'!D41=3.2581806130048658 | J9=f:'ROI Calculation'!G10=0.34
+B11=3 Screens · 200 Luxury Recliner Seats · ConnPlex Franchise (Founded Gujarat, 2019) · Ahmedabad, Gujarat
+B13=MONTHLY REVENUE BY STREAM | G13=REVENUE MIX | J13=3-YEAR NET PROFIT TRAJECTORY
+B14=Stream | C14=₹ / Month | G14=Stream | H14=Share | J14=Year | K14=Net Profit (₹)
+B15=Tickets | C15=f:'ROI Calculation'!J15=952512.00000000023 | G15=Tickets | H15=f:C15/SUM($C$15:$C$17)=0.43135826034030522 | J15=Year 1 | K15=f:'ROI Calculation'!D34=11741829.120000005
+B16=Food & Beverage | C16=f:'ROI Calculation'!E25=1031657.142857143 | G16=Food & Beverage | H16=f:C16/SUM($C$15:$C$17)=0.4672002351786716 | J16=Year 2 | K16=f:'ROI Calculation'!D36=12681175.449600006
+B17=Advertisement | C17=f:'ROI Calculation'!K22=224000 | G17=Advertisement | H17=f:C17/SUM($C$15:$C$17)=0.10144150448102318 | J17=Year 3 | K17=f:'ROI Calculation'!D37=13695669.485568007
+B36=INVESTMENT ALLOCATION | G36=WHY AHMEDABAD, WHY NOW  —  MARKET SIGNALS
+B37=Component | C37=₹ | G37=•  ConnPlex is a Gujarat-founded (2019) cinema franchise, already running 33+ screens across the state with 250 more planned — the brand states Gujarat can support 300 additional screens. Source: bilkulonline.com, Dec 2024.
+•  Ahmedabad had 130 movie theatres as of Oct 2025, up 10% since 2023 — including PVR INOX's 9-screen flagship IMAX/LUXE launch at Phoenix Palladium. Source: rentechdigital.com; newsonprojects.com.
+•  India has ~9,500 screens for 1.43bn people (1 per ~147,000) vs the US (1 per 8,000) — the industry sees room for 25,000+ more Indian screens. Source: ConnPlex franchise disclosure, franchiseavs.com.
+•  Gujarati-language box office alone grew from ₹46 cr (2015) to ₹104+ cr (Oct 2025) — 100%+ growth in a decade. Source: articles.uvnetware.com, Jan 2026.
+•  National multiplex ATP: ₹259-262; F&B spend-per-head hit a record ₹148 in Q1 FY26 — both trending up. Source: PVR INOX investor disclosures / ICICI Direct, 2025-26.
+B38=Seating + Franchise Fee | C38=f:Investment!E12=24550000
+B39=Foyer / Lobby Fit-Out | C39=f:Investment!E13=6600000
+B40=GST @ 18% | C40=f:Investment!E15=5607000
+B41=Pre-Opening & Working Capital | C41=f:Investment!E16=1500000
+B60=HOW MOVIES EARN  —  RECENT INDIAN BOX-OFFICE BENCHMARKS
+B61=FILM (YEAR) | D61=OPENING DAY | F61=OPENING WKND | H61=WORLDWIDE GROSS | J61=TAKEAWAY
+B62=Dhurandhar (2025) | D62=₹90 cr (record) | F62=₹443 cr (record) | H62=₹1,349.7 cr | J62=A single well-marketed tentpole can fill every recliner in the country for weeks - proof of the demand a great slate creates.
+B63=Chhaava (2025) | D63=— | F63=— | H63=₹797-808 cr | J63=Mid-budget period drama outperforming expectations shows genre diversity, not just star power, drives footfalls.
+B64=Saiyaara (2025) | D64=— | F64=— | H64=₹579 cr | J64=A modestly-budgeted romance became a sleeper hit - premium recliner formats let smaller films still deliver strong per-screen yields.
+B65=Kantara: Ch.1 (2025) | D65=— | F65=— | H65=₹852 cr | J65=Regional-language content is now routinely crossing ₹800cr+ nationally, widening the content pipeline for every screen.
+B67=Sources: Bollywood Hungama Box Office Report 2025-26; Wikipedia – List of Hindi films of 2025; Hollywood Reporter India, Feb 2026.
+B69=This dashboard is 100% formula-linked to the ROI Calculation and Investment tabs. Every chart and KPI updates automatically when an assumption changes. All external figures are sourced - see the Assumptions & Sources tab.

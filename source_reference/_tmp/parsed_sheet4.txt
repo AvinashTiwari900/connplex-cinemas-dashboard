@@ -1,0 +1,36 @@
+B1=ASSUMPTIONS & SOURCES
+B3=Every hard-coded figure in this workbook, why it was chosen, and where it comes from.
+B5=ASSUMPTION | C5=VALUE USED | D5=RATIONALE | E5=SOURCE
+B6=TICKET REVENUE
+B7=Total seats (3 screens) | C7=200 | D7=ConnPlex Signature format case studies show 3-screen layouts of 150-260 seats. | E7=franchiseavs.com/connplex-smart-theatres-franchise-in-india/
+B8=Weekday occupancy | C8=20% | D8=PVR INOX's national all-screen average occupancy is ~22-24%; modelled slightly below chain average for a new single-location weekday. | E8=ICICI Direct / Sharekhan PVR INOX research notes, Aug 2025
+B9=Weekend occupancy | C9=55% | D9=Prudent haircut vs. ConnPlex's own '60%+ industry-leading occupancy' franchise claim. | E9=franchiseavs.com/connplex-smart-theatres-franchise-in-india/
+B10=Weekday ATP | C10=₹220 | D10=Below the national blended ATP; weekend pricing carries the premium instead. | E10=Business Standard, Oct 2025 (PVR INOX Q2 FY26 ATP ₹262)
+B11=Weekend / holiday ATP | C11=₹320 | D11=Moderate premium vs. national ATP; PVR has stated select premium/recliner screens price ₹600-700. | E11=aparnadecors.com, Dec 2025, citing PVR INOX MD Ajay Bijli
+B12=GST on tickets (>₹100) | C12=18% | D12=Unchanged under the GST 2.0 reform effective 22-Sep-2025 (only the ≤₹100 slab was cut, from 12% to 5%). | E12=The Hans India, Sep 2025; GST Council 56th meeting
+B13=Distributor / producer share | C13=50% | D13=Industry week-1 nett split; exhibitor share actually rises to 57.5/62.5/70% in later weeks - this model conservatively holds the highest distributor rate throughout. | E13=Koimoi.com trade analysis; IndiaForums Bollywood trade desk
+B14=Franchisee ticket/F&B/ad share | C14=80% (20% royalty) | D14=Assumed ConnPlex brand royalty, within the typical 10-20% Indian franchise royalty band. Edit to match your signed agreement. | E14=Industry-typical franchise royalty range (assumption, not brand-specific disclosure)
+B15=FOOD & BEVERAGE
+B16=F&B Spend-Per-Head (SPH) | C16=₹180 | D16=Premium-format uplift vs. PVR INOX's record national SPH of ₹148 (Q1 FY26) / ₹134 (FY25 avg). | E16=ICICI Direct, Aug 2025; Digital Cinema Report, Aug 2025
+B17=F&B GST | C17=5% | D17=F&B sold stand-alone (not bundled with the ticket) is taxed as a restaurant service at 5% under GST 2.0 - bundled combos revert to the 18% ticket rate. | E17=Business Standard; GST Council 50th & 56th meetings
+B18=F&B cost ratio (COGS) | C18=25% | D18=Cinema concessions typically carry 70-75% gross margin industry-wide. | E18=Industry-standard F&B margin benchmark
+B19=ADVERTISEMENT
+B20=Ad spots / month | C20=40 @ ₹10,000 | D20=Local/regional on-screen + lobby ad inventory for a 3-screen site. | E20=Assumption, sized so ad income sits near PVR INOX's ~6-8% of total revenue
+B21=Agency commission | C21=30% | D21=Standard media-buying agency commission on ad sales. | E21=Industry-standard assumption
+B22=OPERATING EXPENSES (MONTHLY)
+B23=Property rent | C23=₹5,00,000 | D23=Implies ~₹65-70/sq.ft on a ~7,500 sq.ft footprint - well below Ahmedabad CG Road high-street rates, consistent with mall-anchor cinema deals. | E23=thesimplebizman.com, Aug 2025 (Ahmedabad CG Road: ₹120-300/sq.ft)
+B24=CAM charges | C24=₹80,000 | D24=Typical mall common-area-maintenance charge of ₹10-15/sq.ft/month. | E24=Standard Indian mall-lease convention
+B25=Electricity | C25=₹1,80,000 | D25=3-screen HVAC + laser projection load at Gujarat commercial tariffs (~₹7-8/unit). | E25=Assumption based on Gujarat commercial power tariffs
+B26=Marketing & promotion | C26=2% of Ticket+F&B | D26=Typical retail/entertainment marketing budget ratio - formula-linked so it scales with revenue. | E26=Assumption
+B27=INVESTMENT (ONE-TIME)
+B28=Seat prices | C28=₹85k-1.5L / seat | D28=Per ConnPlex's own published price specification. | E28=Original franchise price list (franchisor-supplied)
+B29=Franchise fee | C29=₹5,00,000 / screen | D29=Per ConnPlex franchise disclosure. | E29=Original franchise document
+B30=Foyer fit-out | C30=₹3,000/sq.ft × 2,200 sq.ft | D30=Premium cinema-lobby fit-outs in India typically run ₹3,000-6,000/sq.ft. | E30=Industry fit-out cost benchmark (assumption)
+B31=Total investment (check) | C31=~₹3.5-4.0 cr | D31=Lands inside ConnPlex's own disclosed ₹2-4 crore range for the Signature/Luxuriance formats. | E31=franchiseavs.com/connplex-smart-theatres-franchise-in-india/
+B32=MARKET CONTEXT
+B33=Ahmedabad screen count | C33=130 theatres (Oct 2025), +10% vs 2023 | D33=Confirms an actively growing exhibition market. | E33=rentechdigital.com
+B34=PVR INOX Ahmedabad presence | C34=36 screens / 6 properties (incl. 9-screen IMAX/LUXE flagship) | D34=Validates premium-format demand in the city. | E34=newsonprojects.com
+B35=ConnPlex Gujarat footprint | C35=33+ screens live, 250 more planned | D35=Brand's own stated Gujarat growth trajectory. | E35=bilkulonline.com, Dec 2024
+B36=Gujarati box-office growth | C36=₹46cr (2015) → ₹104+cr (Oct 2025) | D36=100%+ decade growth in the regional content pipeline. | E36=articles.uvnetware.com, Jan 2026
+B37=India screen density | C37=1 screen per ~147,000 people vs. USA 1:8,000 | D37=Structural under-screened market cited by the franchisor. | E37=franchiseavs.com/connplex-smart-theatres-franchise-in-india/
+B39=Every editable assumption cell also carries an in-cell comment (hover to view) repeating this rationale and source at the point of use.

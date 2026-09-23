@@ -1,0 +1,28 @@
+B1=CONNPLEX SIGNATURE  •  INVESTMENT CALCULATION
+B3=FOFO (Franchise-Owned, Franchise-Operated) Model  —  3 Screens
+B4=  Champagne-gold = editable input   ·   White = formula   ·   Navy/gold = key total
+B6=1.  SEATING & AUDITORIUM INVESTMENT | G6=PRICE LIST REFERENCE
+B7=PRODUCT DETAILS | C7=PRICE / SEAT (₹) | D7=NUMBER OF SEATS | E7=TOTAL (₹) | G7=Seat / Item | H7=Price (₹)
+B8=Sofa Slider | C8=85000 | D8=80 | E8=f:C8*D8=6800000 | G8=Sofa Slider | H8=85000
+B9=Recliners | C9=150000 | D9=50 | E9=f:C9*D9=7500000 | G9=Fixed Couple Lounger | H9=125000
+B10=Duo Loungers (Couple Seating) | C10=125000 | D10=70 | E10=f:C10*D10=8750000 | G10=Automatic Recliner Sofa | H10=150000
+B11=Franchise Fee (per screen) | C11=500000 | D11=3 | E11=f:C11*D11=1500000 | G11=Franchise Fee / Screen | H11=500000
+B12=SUBTOTAL: Seating + Franchise Fee | E12=f:SUM(E8:E11)=24550000
+B13=Foyer / Lobby Fit-Out (Sq.Ft) | C13=3000 | D13=2200 | E13=f:C13*D13=6600000 | G13=ConnPlex Signature specification (per franchise disclosure):
+
+• Area required: 6,000-9,000 sq.ft
+• Screens: 3
+• Seating: Sofa Sliders, Duo Loungers, Recliners
+• Capacity: up to ~175-260 seats
+• Franchisor-claimed occupancy: 60%+
+• Franchisor-claimed payback: 3-4 years
+
+Source: franchiseavs.com/connplex-smart-theatres-franchise-in-india/
+B14=TOTAL AUDITORIUM + FOYER INVESTMENT | E14=f:E12+E13=31150000
+B15=GST @ 18% (on equipment & fit-out) | C15=0.18 | E15=f:E14*C15=5607000
+B16=Pre-Opening Marketing & Working Capital Reserve | E16=1500000
+B18=TOTAL INVESTMENT OF THE THEATRE | E18=f:E14+E15+E16=38257000
+B20=* GST is extra / applicable as per prevailing government norms.
+B21=* Minimum ceiling height: 12 ft (per ConnPlex build specification).
+B22=* Outer-area / facade beautification charges are extra, and civil construction is not included in the ConnPlex franchise package.
+B23=* ConnPlex's own disclosed estimate: Rs.2-4 crore total investment depending on format & city (Source: franchiseavs.com/connplex-smart-theatres-franchise-in-india).

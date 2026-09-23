@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-554fad2b-5b33-4265-9d87-31951ad6d1ca/styles.css">
+<script src="_ds/industry-554fad2b-5b33-4265-9d87-31951ad6d1ca/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:var(--color-bg);font-family:var(--font-body);color:var(--color-text)}
+.cx-corner-card{position:relative}
+.cx-input-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
+.cx-section summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;padding:12px 0;font-family:var(--font-heading);font-weight:700;font-size:13.5px;letter-spacing:.01em;color:var(--color-neutral-800);transition:color .15s ease}
+.cx-section summary:hover{color:var(--color-accent-700)}
+.cx-section summary::-webkit-details-marker{display:none}
+.cx-section{border-bottom:1px solid var(--color-divider);margin-bottom:4px}
+.cx-section[open] summary .cx-chev{transform:rotate(90deg);color:var(--color-accent-700)}
+.cx-chev{transition:transform .15s ease;color:var(--color-neutral-400)}
+.cx-scroll::-webkit-scrollbar{width:7px;height:7px}
+.cx-scroll::-webkit-scrollbar-track{background:#f1f5f9}
+.cx-scroll::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}
+.cx-scroll::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+aside.cx-scroll { background: #ffffff !important; }
+.card { background: #ffffff !important; border: 1px solid var(--color-divider) !important; border-radius: 14px !important; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.04) !important; }
+.card-kicker { font-weight: 700 !important; color: #b45309 !important; text-transform: uppercase; letter-spacing: 0.06em; font-size: 10.5px; }
+.card-title { color: #0f172a !important; font-weight: 800 !important; }
+.btn { border-radius: 8px !important; font-weight: 600; }
+.input { border-radius: 8px !important; border: 1px solid #cbd5e1 !important; background: #ffffff !important; }
+.input:focus { border-color: #b45309 !important; box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12) !important; }
+.nav { background: #ffffff !important; border: 1px solid var(--color-divider) !important; border-radius: 12px !important; padding: 12px 18px !important; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.03) !important; }
+.blueprint > .corner { display: none !important; }
+</style>
+</helmet>
+<div style="display:flex;min-height:100vh;background:var(--color-bg);font-family:var(--font-body);color:var(--color-text)">
+
+  <sc-if value="{{ presenting }}" hint-placeholder-val="{{ false }}">
+    <aside style="width:0"></aside>
+  </sc-if>
+  <sc-if value="{{ notPresenting }}" hint-placeholder-val="{{ true }}">
+  <aside class="cx-scroll" style="width:380px;flex:none;border-right:1px solid var(--color-divider);height:100vh;overflow-y:auto;padding:var(--space-6) var(--space-4) var(--space-8)">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:var(--space-4)">
+      <div>
+        <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55">Sales Rep Console</div>
+        <h2 style="margin:2px 0 0;font-size:22px">Deal Inputs</h2>
+      </div>
+      <span class="tag tag-outline">Live</span>
+    </div>
+    <p style="font-size:12.5px;opacity:.65;margin:0 0 var(--space-4)">Edit any assumption — the investor dashboard on the right recalculates instantly. Click "Present" to hide this panel for the prospect.</p>
+
+    <details class="cx-section" open="{{ true }}">
+      <summary>Location &amp; Format<svg class="cx-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div style="padding-bottom:var(--space-4);display:grid;gap:var(--space-3)">
+        <div class="cx-input-row">
+          <div class="field"><label>City</label><input class="input" value="{{ inputs.city }}" onChange="{{ fieldHandlers.city }}"></div>
+          <div class="field"><label>State</label><input class="input" value="{{ inputs.state }}" onChange="{{ fieldHandlers.state }}"></div>
+        </div>
+        <div class="field"><label>Prospect / Investor name</label><input class="input" value="{{ inputs.prospectName }}" onChange="{{ fieldHandlers.prospectName }}"></div>
+        <div class="field"><label>Screens</label><input class="input" type="number" value="{{ inputs.screens }}" onChange="{{ fieldHandlers.screens }}"></div>
+      </div>
+    </details>
+
+    <details class="cx-section" open="{{ true }}">
+      <summary>Seating &amp; Auditorium Investment<svg class="cx-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div style="padding-bottom:var(--space-4);display:grid;gap:var(--space-3)">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-neutral-600)">
+          <span>Sofa Slider</span>
+          <span style="font-family:var(--font-mono);font-weight:700;color:var(--color-accent-700)">{{ inv.sofaTotal }}</span>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>Price / seat (₹)</label><input class="input" type="number" min="0" value="{{ inputs.sofaPrice }}" onChange="{{ fieldHandlers.sofaPrice }}"></div>
+          <div class="field"><label>Seats</label><input class="input" type="number" min="0" step="1" value="{{ inputs.sofaQty }}" onChange="{{ fieldHandlers.sofaQty }}"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-neutral-600)">
+          <span>Recliners</span>
+          <span style="font-family:var(--font-mono);font-weight:700;color:var(--color-accent-700)">{{ inv.reclinerTotal }}</span>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>Price / seat (₹)</label><input class="input" type="number" min="0" value="{{ inputs.reclinerPrice }}" onChange="{{ fieldHandlers.reclinerPrice }}"></div>
+          <div class="field"><label>Seats</label><input class="input" type="number" min="0" step="1" value="{{ inputs.reclinerQty }}" onChange="{{ fieldHandlers.reclinerQty }}"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-neutral-600)">
+          <span>Duo Loungers</span>
+          <span style="font-family:var(--font-mono);font-weight:700;color:var(--color-accent-700)">{{ inv.duoTotal }}</span>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>Price / seat (₹)</label><input class="input" type="number" min="0" value="{{ inputs.duoPrice }}" onChange="{{ fieldHandlers.duoPrice }}"></div>
+          <div class="field"><label>Seats</label><input class="input" type="number" min="0" step="1" value="{{ inputs.duoQty }}" onChange="{{ fieldHandlers.duoQty }}"></div>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>Franchise fee / screen (₹)</label><input class="input" type="number" min="0" value="{{ inputs.franchiseFeePerScreen }}" onChange="{{ fieldHandlers.franchiseFeePerScreen }}"></div>
+          <div class="field"><label>Total seats</label><input class="input" value="{{ totalSeats }}" disabled="{{ true }}"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#fef9ee;border-radius:6px;border:1px solid #fde68a;font-size:12px;font-weight:700;color:#78350f">
+          <span>Subtotal (Seating + Franchise):</span>
+          <span style="font-family:var(--font-mono)">{{ inv.seatingSubtotal }}</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="cx-section">
+      <summary>Foyer, GST &amp; Working Capital<svg class="cx-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div style="padding-bottom:var(--space-4);display:grid;gap:var(--space-3)">
+        <div class="cx-input-row">
+          <div class="field"><label>Foyer area (sq.ft)</label><input class="input" type="number" min="0" step="any" value="{{ inputs.foyerSqft }}" onChange="{{ fieldHandlers.foyerSqft }}"></div>
+          <div class="field"><label>Fit-out rate (₹/sq.ft)</label><input class="input" type="number" min="0" value="{{ inputs.foyerRate }}" onChange="{{ fieldHandlers.foyerRate }}"></div>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>GST on capex (%)</label><input class="input" type="number" min="0" max="100" value="{{ inputs.gstCapexPct }}" onChange="{{ fieldHandlers.gstCapexPct }}"></div>
+          <div class="field"><label>Pre-opening &amp; WC reserve (₹)</label><input class="input" type="number" min="0" value="{{ inputs.preOpeningWC }}" onChange="{{ fieldHandlers.preOpeningWC }}"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#0f172a;border-radius:6px;color:#fbbf24;font-size:12px;font-weight:700">
+          <span>Total Theatre Investment:</span>
+          <span style="font-family:var(--font-mono);font-size:13px">{{ inv.grandTotal }}</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="cx-section">
+      <summary>Ticket Revenue<svg class="cx-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div style="padding-bottom:var(--space-4);display:grid;gap:var(--space-3)">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.5">Weekday (Mon–Thu)</div>
+        <div class="cx-input-row">
+          <div class="field"><label>Shows / day</label><input class="input" type="number" value="{{ inputs.wdShows }}" onChange="{{ fieldHandlers.wdShows }}"></div>
+          <div class="field"><label>Operating days / mo.</label><input class="input" type="number" value="{{ inputs.wdDays }}" onChange="{{ fieldHandlers.wdDays }}"></div>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>Occupancy (%)</label><input class="input" type="number" value="{{ inputs.wdOccPct }}" onChange="{{ fieldHandlers.wdOccPct }}"></div>
+          <div class="field"><label>ATP (₹)</label><input class="input" type="number" value="{{ inputs.wdAtp }}" onChange="{{ fieldHandlers.wdAtp }}"></div>
+        </div>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.5">Weekend (Fri–Sun)</div>
+        <div class="cx-input-row">
+          <div class="field"><label>Shows / day</label><input class="input" type="number" value="{{ inputs.weShows }}" onChange="{{ fieldHandlers.weShows }}"></div>
+          <div class="field"><label>Operating days / mo.</label><input class="input" type="number" value="{{ inputs.weDays }}" onChange="{{ fieldHandlers.weDays }}"></div>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>Occupancy (%)</label><input class="input" type="number" value="{{ inputs.weOccPct }}" onChange="{{ fieldHandlers.weOccPct }}"></div>
+          <div class="field"><label>ATP (₹)</label><input class="input" type="number" value="{{ inputs.weAtp }}" onChange="{{ fieldHandlers.weAtp }}"></div>
+        </div>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.5">Splits</div>
+        <div class="cx-input-row">
+          <div class="field"><label>GST on tickets (%)</label><input class="input" type="number" value="{{ inputs.gstTicketPct }}" onChange="{{ fieldHandlers.gstTicketPct }}"></div>
+          <div class="field"><label>Distributor share (%)</label><input class="input" type="number" value="{{ inputs.distributorPct }}" onChange="{{ fieldHandlers.distributorPct }}"></div>
+        </div>
+        <div class="field"><label>Franchisee share after brand royalty (%)</label><input class="input" type="number" value="{{ inputs.franchiseeTicketPct }}" onChange="{{ fieldHandlers.franchiseeTicketPct }}"></div>
+      </div>
+    </details>
+
+    <details class="cx-section">
+      <summary>Food, Beverage &amp; Advertising<svg class="cx-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div style="padding-bottom:var(--space-4);display:grid;gap:var(--space-3)">
+        <div class="cx-input-row">
+          <div class="field"><label>Concession spend / ticket (₹)</label><input class="input" type="number" value="{{ inputs.fnbRatePerTicket }}" onChange="{{ fieldHandlers.fnbRatePerTicket }}"></div>
+          <div class="field"><label>F&amp;B franchisee share (%)</label><input class="input" type="number" value="{{ inputs.franchiseeFnbPct }}" onChange="{{ fieldHandlers.franchiseeFnbPct }}"></div>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>F&amp;B GST (%)</label><input class="input" type="number" value="{{ inputs.fnbGstPct }}" onChange="{{ fieldHandlers.fnbGstPct }}"></div>
+          <div class="field"><label>F&amp;B COGS (%)</label><input class="input" type="number" value="{{ inputs.fnbCogsPct }}" onChange="{{ fieldHandlers.fnbCogsPct }}"></div>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>On-screen / lobby ads (qty/mo.)</label><input class="input" type="number" value="{{ inputs.adQty }}" onChange="{{ fieldHandlers.adQty }}"></div>
+          <div class="field"><label>Rate per ad (₹)</label><input class="input" type="number" value="{{ inputs.adRate }}" onChange="{{ fieldHandlers.adRate }}"></div>
+        </div>
+        <div class="cx-input-row">
+          <div class="field"><label>Agency commission (%)</label><input class="input" type="number" value="{{ inputs.agencyPct }}" onChange="{{ fieldHandlers.agencyPct }}"></div>
+          <div class="field"><label>Ad franchisee share (%)</label><input class="input" type="number" value="{{ inputs.franchiseeAdPct }}" onChange="{{ fieldHandlers.franchiseeAdPct }}"></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="cx-section">
+      <summary>Monthly Operating Expenses<svg class="cx-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div style="padding-bottom:var(--space-4);display:grid;gap:var(--space-3)">
+        <div class="cx-input-row"><div class="field"><label>Property rent (₹)</label><input class="input" type="number" value="{{ inputs.rent }}" onChange="{{ fieldHandlers.rent }}"></div>
+        <div class="field"><label>CAM charges (₹)</label><input class="input" type="number" value="{{ inputs.cam }}" onChange="{{ fieldHandlers.cam }}"></div></div>
+        <div class="cx-input-row"><div class="field"><label>Internet &amp; digital (₹)</label><input class="input" type="number" value="{{ inputs.internet }}" onChange="{{ fieldHandlers.internet }}"></div>
+        <div class="field"><label>Electricity (₹)</label><input class="input" type="number" value="{{ inputs.electricity }}" onChange="{{ fieldHandlers.electricity }}"></div></div>
+        <div class="cx-input-row"><div class="field"><label>Equipment AMC (₹)</label><input class="input" type="number" value="{{ inputs.amc }}" onChange="{{ fieldHandlers.amc }}"></div>
+        <div class="field"><label>Insurance (₹)</label><input class="input" type="number" value="{{ inputs.insurance }}" onChange="{{ fieldHandlers.insurance }}"></div></div>
+        <div class="cx-input-row"><div class="field"><label>Admin / misc. (₹)</label><input class="input" type="number" value="{{ inputs.admin }}" onChange="{{ fieldHandlers.admin }}"></div>
+        <div class="field"><label>Projection operators (₹)</label><input class="input" type="number" value="{{ inputs.operators }}" onChange="{{ fieldHandlers.operators }}"></div></div>
+        <div class="cx-input-row"><div class="field"><label>F&amp;B + ticketing staff (₹)</label><input class="input" type="number" value="{{ inputs.fnbStaff }}" onChange="{{ fieldHandlers.fnbStaff }}"></div>
+        <div class="field"><label>Housekeeping staff (₹)</label><input class="input" type="number" value="{{ inputs.housekeeping }}" onChange="{{ fieldHandlers.housekeeping }}"></div></div>
+        <div class="cx-input-row"><div class="field"><label>Security staff (₹)</label><input class="input" type="number" value="{{ inputs.security }}" onChange="{{ fieldHandlers.security }}"></div>
+        <div class="field"><label>Marketing (% of ticket+F&amp;B income)</label><input class="input" type="number" value="{{ inputs.marketingPct }}" onChange="{{ fieldHandlers.marketingPct }}"></div></div>
+      </div>
+    </details>
+
+    <details class="cx-section">
+      <summary>Growth<svg class="cx-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div style="padding-bottom:var(--space-4)">
+        <div class="field"><label>Assumed annual growth, Yr 2+ (%)</label><input class="input" type="number" value="{{ inputs.growthPct }}" onChange="{{ fieldHandlers.growthPct }}"></div>
+      </div>
+    </details>
+
+    <button type="button" class="btn btn-secondary btn-block blueprint" style="margin-top:var(--space-4)" onClick="{{ resetDefaults }}"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Reset to franchise defaults</button>
+  </aside>
+  </sc-if>
+
+  <main class="cx-scroll" style="flex:1;height:100vh;overflow-y:auto">
+    <div style="max-width:1180px;margin:0 auto;padding:var(--space-8) var(--space-6) 80px">
+
+      <nav class="nav" style="margin:0 0 var(--space-6)">
+        <span class="nav-brand">ConnPlex Signature</span>
+        <a href="#" aria-current="page">Investor Dashboard</a>
+        <button type="button" class="btn btn-secondary blueprint" onClick="{{ togglePresent }}"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>{{ presentLabel }}</button>
+      </nav>
+
+      <div style="margin-bottom:var(--space-6)">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);font-weight:600">Luxury Recliner Multiplex · Investor ROI Dashboard · FOFO Franchise Model</div>
+        <h1 style="font-size:44px;margin:6px 0 4px">CONNPLEX SIGNATURE — {{ inputs.city }}</h1>
+        <p style="font-size:14px;opacity:.65;margin:0">{{ inputs.screens }} Screens · {{ totalSeats }} Luxury Recliner Seats · ConnPlex Franchise (Founded Gujarat, 2019) · {{ inputs.city }}, {{ inputs.state }}<sc-if value="{{ hasProspectName }}" hint-placeholder-val="{{ false }}"> · Prepared for {{ inputs.prospectName }}</sc-if></p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-3);margin-bottom:var(--space-6)">
+        <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Total Investment</div><div class="card-title" style="font-size:26px;color:var(--color-accent-800)">{{ kpi.totalInvestment }}</div></div>
+        <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Year-1 Net Profit</div><div class="card-title" style="font-size:26px;color:var(--color-accent-800)">{{ kpi.netProfitY1 }}</div></div>
+        <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Return on Investment</div><div class="card-title" style="font-size:26px;color:var(--color-accent-800)">{{ kpi.roi }}</div></div>
+        <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Payback Period</div><div class="card-title" style="font-size:26px;color:var(--color-accent-800)">{{ kpi.payback }}</div></div>
+        <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Blended Occupancy</div><div class="card-title" style="font-size:26px;color:var(--color-accent-800)">{{ kpi.occupancy }}</div></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:var(--space-4);margin-bottom:var(--space-6)">
+        <div class="card blueprint elev-md"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Monthly Revenue by Stream</div>
+          <div style="display:grid;gap:var(--space-3);margin-top:var(--space-3)">
+            <sc-for list="{{ revenueStreams }}" as="stream" hint-placeholder-count="3">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>{{ stream.name }}</span><strong>{{ stream.formatted }}</strong></div>
+                <div style="height:10px;background:var(--color-neutral-200);border-radius:2px;overflow:hidden">
+                  <div style="height:100%;background:var(--color-accent);width:{{ stream.pct }}"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div class="card blueprint elev-md"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Revenue Mix</div>
+          <div style="display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-3)">
+            <div style="width:120px;height:120px;border-radius:50%;flex:none;background:{{ donutGradient }}"></div>
+            <div style="display:grid;gap:6px;font-size:12.5px">
+              <sc-for list="{{ revenueStreams }}" as="stream" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;flex:none;background:{{ stream.color }}"></span>{{ stream.name }} · {{ stream.sharePct }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-bottom:var(--space-6)">
+        <div class="card blueprint elev-md"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">3-Year Net Profit Trajectory</div>
+          <div style="display:flex;align-items:flex-end;gap:var(--space-4);height:140px;margin-top:var(--space-4);padding:0 var(--space-2)">
+            <sc-for list="{{ yearBars }}" as="yb" hint-placeholder-count="3">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%">
+                <div style="font-size:12px;font-weight:600;margin-bottom:6px">{{ yb.formatted }}</div>
+                <div style="width:60%;height:{{ yb.height }};background:{{ yb.color }}"></div>
+                <div style="font-size:11px;opacity:.6;margin-top:6px;text-transform:uppercase;letter-spacing:.06em">{{ yb.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div class="card blueprint elev-md"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Investment Allocation</div>
+          <div style="display:grid;gap:var(--space-3);margin-top:var(--space-3)">
+            <sc-for list="{{ investmentBars }}" as="ib" hint-placeholder-count="4">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>{{ ib.name }}</span><strong>{{ ib.formatted }}</strong></div>
+                <div style="height:10px;background:var(--color-neutral-200);border-radius:2px;overflow:hidden">
+                  <div style="height:100%;background:var(--color-accent-2);width:{{ ib.pct }}"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONNPLEX CINEMAS – INVESTMENT CALCULATION MODULE -->
+      <div class="card blueprint elev-md" style="margin-bottom:var(--space-6)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+          <div>
+            <div class="card-kicker" style="font-size:12px;letter-spacing:.08em;color:var(--color-accent-700)">CONNPLEX CINEMAS – INVESTMENT CALCULATION</div>
+            <div style="font-size:13px;opacity:.7;margin-top:2px">FOFO (Franchise-Owned, Franchise-Operated) Model — {{ inputs.screens }} Screens</div>
+          </div>
+          <div style="font-size:11px;padding:4px 8px;border-radius:6px;background:#fef3c7;color:#78350f;border:1px solid #fde68a">
+            Champagne-gold = editable input · White = formula · Navy/gold = key total
+          </div>
+        </div>
+
+        <table class="table" style="margin-top:var(--space-4);border-collapse:collapse;width:100%">
+          <thead>
+            <tr style="background:#f8fafc;border-bottom:2px solid var(--color-divider)">
+              <th style="padding:10px;text-align:left">PRODUCT / ITEM DETAILS</th>
+              <th style="padding:10px;text-align:right">PRICE / SEAT (₹)</th>
+              <th style="padding:10px;text-align:right">NUMBER OF SEATS</th>
+              <th style="padding:10px;text-align:right">TOTAL (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--color-divider)">
+              <td style="padding:10px 12px;font-weight:600">Sofa Slider</td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <span style="color:#b45309;font-weight:600;font-size:12px">₹</span>
+                  <input class="input" type="number" min="0" step="1000" value="{{ inputs.sofaPrice }}" onChange="{{ fieldHandlers.sofaPrice }}" style="width:95px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                </div>
+              </td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <input class="input" type="number" min="0" step="1" value="{{ inputs.sofaQty }}" onChange="{{ fieldHandlers.sofaQty }}" style="width:70px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                  <span style="color:#92400e;font-size:11px">seats</span>
+                </div>
+              </td>
+              <td style="padding:10px 12px;text-align:right;background:#ffffff;font-weight:700;font-family:var(--font-mono);color:#0f172a;border:1px solid var(--color-divider)">{{ inv.sofaTotal }}</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--color-divider)">
+              <td style="padding:10px 12px;font-weight:600">Recliners</td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <span style="color:#b45309;font-weight:600;font-size:12px">₹</span>
+                  <input class="input" type="number" min="0" step="1000" value="{{ inputs.reclinerPrice }}" onChange="{{ fieldHandlers.reclinerPrice }}" style="width:95px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                </div>
+              </td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <input class="input" type="number" min="0" step="1" value="{{ inputs.reclinerQty }}" onChange="{{ fieldHandlers.reclinerQty }}" style="width:70px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                  <span style="color:#92400e;font-size:11px">seats</span>
+                </div>
+              </td>
+              <td style="padding:10px 12px;text-align:right;background:#ffffff;font-weight:700;font-family:var(--font-mono);color:#0f172a;border:1px solid var(--color-divider)">{{ inv.reclinerTotal }}</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--color-divider)">
+              <td style="padding:10px 12px;font-weight:600">Duo Loungers / Couple Seating</td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <span style="color:#b45309;font-weight:600;font-size:12px">₹</span>
+                  <input class="input" type="number" min="0" step="1000" value="{{ inputs.duoPrice }}" onChange="{{ fieldHandlers.duoPrice }}" style="width:95px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                </div>
+              </td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <input class="input" type="number" min="0" step="1" value="{{ inputs.duoQty }}" onChange="{{ fieldHandlers.duoQty }}" style="width:70px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                  <span style="color:#92400e;font-size:11px">seats</span>
+                </div>
+              </td>
+              <td style="padding:10px 12px;text-align:right;background:#ffffff;font-weight:700;font-family:var(--font-mono);color:#0f172a;border:1px solid var(--color-divider)">{{ inv.duoTotal }}</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--color-divider)">
+              <td style="padding:10px 12px;font-weight:600">Franchise Fee (per screen)</td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <span style="color:#b45309;font-weight:600;font-size:12px">₹</span>
+                  <input class="input" type="number" min="0" step="50000" value="{{ inputs.franchiseFeePerScreen }}" onChange="{{ fieldHandlers.franchiseFeePerScreen }}" style="width:95px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                </div>
+              </td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <input class="input" type="number" min="1" step="1" value="{{ inputs.screens }}" onChange="{{ fieldHandlers.screens }}" style="width:55px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                  <span style="color:#92400e;font-size:11px">screens</span>
+                </div>
+              </td>
+              <td style="padding:10px 12px;text-align:right;background:#ffffff;font-weight:700;font-family:var(--font-mono);color:#0f172a;border:1px solid var(--color-divider)">{{ inv.franchiseTotal }}</td>
+            </tr>
+            <tr style="background:#f8fafc;border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider);font-weight:700">
+              <td colspan="3" style="padding:11px 12px;color:#0f172a;font-size:13.5px">SUBTOTAL: Seating + Franchise Fee</td>
+              <td style="padding:11px 12px;text-align:right;background:#ffffff;font-family:var(--font-mono);font-size:14.5px;font-weight:800;color:#0f172a;border:1px solid var(--color-divider)">{{ inv.seatingSubtotal }}</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--color-divider)">
+              <td style="padding:10px 12px;font-weight:600">Foyer / Lobby Fit-Out</td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <span style="color:#b45309;font-weight:600;font-size:12px">₹</span>
+                  <input class="input" type="number" min="0" step="100" value="{{ inputs.foyerRate }}" onChange="{{ fieldHandlers.foyerRate }}" style="width:80px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                  <span style="color:#92400e;font-size:11px">/sq.ft</span>
+                </div>
+              </td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <input class="input" type="number" min="0" step="any" value="{{ inputs.foyerSqft }}" onChange="{{ fieldHandlers.foyerSqft }}" placeholder="0" style="width:80px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                  <span style="color:#92400e;font-size:11px">sq.ft</span>
+                </div>
+              </td>
+              <td style="padding:10px 12px;text-align:right;background:#ffffff;font-weight:700;font-family:var(--font-mono);color:#0f172a;border:1px solid var(--color-divider)">{{ inv.foyerTotal }}</td>
+            </tr>
+            <tr style="background:#f1f5f9;font-weight:700;border-bottom:1px solid var(--color-divider)">
+              <td colspan="3" style="padding:11px 12px;color:#0f172a;font-size:13.5px">TOTAL AUDITORIUM + FOYER INVESTMENT</td>
+              <td style="padding:11px 12px;text-align:right;background:#ffffff;font-family:var(--font-mono);font-size:14.5px;font-weight:800;color:#0f172a;border:1px solid var(--color-divider)">{{ inv.auditoriumFoyerTotal }}</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--color-divider)">
+              <td style="padding:10px 12px;font-weight:600">GST @ {{ inputs.gstCapexPct }}% (on equipment &amp; fit-out)</td>
+              <td style="padding:4px 8px;text-align:right;background:#fef9ee;border:1px solid #fde68a">
+                <div style="display:inline-flex;align-items:center;justify-content:flex-end;gap:3px">
+                  <input class="input" type="number" min="0" max="100" step="any" value="{{ inputs.gstCapexPct }}" onChange="{{ fieldHandlers.gstCapexPct }}" style="width:55px;text-align:right;background:#fffdf7;border:1px solid #fde68a;border-radius:4px;font-weight:700;color:#78350f;font-family:var(--font-mono);padding:4px 6px;font-size:13px">
+                  <span style="color:#92400e;font-size:12px;font-weight:700">%</span>
+                </div>
+              </td>
+              <td style="padding:10px 12px;text-align:right;color:#64748b;font-size:12px">Taxable Outlay Base</td>
+              <td style="padding:10px 12px;text-align:right;background:#ffffff;font-weight:700;font-family:var(--font-mono);color:#0f172a;border:1px solid var(--color-divider)">{{ inv.gstAmount }}</td>
+            </tr>
+            <tr style="background:#0f172a;color:#fbbf24;font-weight:800;border-top:2px solid #b45309">
+              <td colspan="3" style="padding:14px 12px;font-size:15px;letter-spacing:.02em">TOTAL INVESTMENT OF THE THEATRE</td>
+              <td style="padding:14px 12px;text-align:right;font-family:var(--font-mono);font-size:17px;color:#fbbf24;font-weight:800">{{ inv.grandTotal }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card blueprint elev-md" style="margin-bottom:var(--space-6)"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div class="card-kicker">Franchisee Profit Summary — Monthly / Annual (Year 1)</div>
+        <table class="table" style="margin-top:var(--space-3)">
+          <thead><tr><th>Particular</th><th style="text-align:right">Monthly (₹)</th><th style="text-align:right">Annual (₹)</th></tr></thead>
+          <tbody>
+            <tr><td>Ticket Income</td><td style="text-align:right">{{ summary.ticketM }}</td><td style="text-align:right">{{ summary.ticketA }}</td></tr>
+            <tr><td>Food &amp; Beverage Income</td><td style="text-align:right">{{ summary.fnbM }}</td><td style="text-align:right">{{ summary.fnbA }}</td></tr>
+            <tr><td>Advertisement Income</td><td style="text-align:right">{{ summary.adM }}</td><td style="text-align:right">{{ summary.adA }}</td></tr>
+            <tr><td><strong>Total Franchisee Income</strong></td><td style="text-align:right"><strong>{{ summary.totalIncomeM }}</strong></td><td style="text-align:right"><strong>{{ summary.totalIncomeA }}</strong></td></tr>
+            <tr><td>Total Operating Expenses</td><td style="text-align:right">{{ summary.opexM }}</td><td style="text-align:right">{{ summary.opexA }}</td></tr>
+            <tr><td><strong>Net Profit (Franchisee)</strong></td><td style="text-align:right;color:var(--color-accent-800)"><strong>{{ summary.netM }}</strong></td><td style="text-align:right;color:var(--color-accent-800)"><strong>{{ summary.netA }}</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card blueprint elev-sm" style="margin-bottom:var(--space-6)"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div class="card-kicker">Why {{ inputs.state }}, Why Now — Market Signals</div>
+        <div style="display:grid;gap:8px;font-size:13px;line-height:1.55;margin-top:var(--space-2)">
+          <p style="margin:0">• ConnPlex is a Gujarat-founded (2019) cinema franchise, already running 33+ screens across the state with 250 more planned — the brand states Gujarat can support 300 additional screens. <em class="text-muted">Source: bilkulonline.com, Dec 2024.</em></p>
+          <p style="margin:0">• Ahmedabad had 130 movie theatres as of Oct 2025, up 10% since 2023 — including PVR INOX's 9-screen flagship IMAX/LUXE launch at Phoenix Palladium. <em class="text-muted">Source: rentechdigital.com; newsonprojects.com.</em></p>
+          <p style="margin:0">• India has ~9,500 screens for 1.43bn people (1 per ~147,000) vs. the US (1 per 8,000) — the industry sees room for 25,000+ more Indian screens. <em class="text-muted">Source: ConnPlex franchise disclosure, franchiseavs.com.</em></p>
+          <p style="margin:0">• Gujarati-language box office alone grew from ₹46 cr (2015) to ₹104+ cr (Oct 2025) — 100%+ growth in a decade. <em class="text-muted">Source: articles.uvnetware.com, Jan 2026.</em></p>
+          <p style="margin:0">• National multiplex ATP: ₹259–262; F&amp;B spend-per-head hit a record ₹148 in Q1 FY26 — both trending up. <em class="text-muted">Source: PVR INOX investor disclosures / ICICI Direct, 2025-26.</em></p>
+        </div>
+      </div>
+
+      <div class="card blueprint elev-sm" style="margin-bottom:var(--space-6)"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div class="card-kicker">How Movies Earn — Recent Indian Box-Office Benchmarks</div>
+        <table class="table" style="margin-top:var(--space-3)">
+          <thead><tr><th>Film (Year)</th><th>Opening Weekend</th><th>Worldwide Gross</th><th>Takeaway</th></tr></thead>
+          <tbody>
+            <tr><td>Dhurandhar (2025)</td><td>₹443 cr (record)</td><td>₹1,349.7 cr</td><td class="text-muted">A single well-marketed tentpole can fill every recliner in the country for weeks.</td></tr>
+            <tr><td>Chhaava (2025)</td><td>—</td><td>₹797–808 cr</td><td class="text-muted">Mid-budget period drama outperforming expectations shows genre diversity drives footfalls.</td></tr>
+            <tr><td>Saiyaara (2025)</td><td>—</td><td>₹579 cr</td><td class="text-muted">Premium recliner formats let smaller films still deliver strong per-screen yields.</td></tr>
+            <tr><td>Kantara: Ch.1 (2025)</td><td>—</td><td>₹852 cr</td><td class="text-muted">Regional-language content now routinely crosses ₹800cr+, widening the content pipeline.</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="font-size:11px;opacity:.55;margin-top:var(--space-2)">Sources: Bollywood Hungama Box Office Report 2025-26; Wikipedia — List of Hindi films of 2025; Hollywood Reporter India, Feb 2026.</p>
+      </div>
+
+      <p style="font-size:12px;opacity:.55;text-align:center">This dashboard is fully formula-linked — every KPI and chart recalculates the moment a sales rep changes an assumption in the panel.</p>
+    </div>
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DEFAULTS = {
+  city: 'Ahmedabad', state: 'Gujarat', prospectName: '', screens: 3,
+  sofaPrice: 85000, sofaQty: 200, reclinerPrice: 150000, reclinerQty: 50, duoPrice: 125000, duoQty: 20,
+  franchiseFeePerScreen: 500000,
+  foyerSqft: 0, foyerRate: 3500, gstCapexPct: 18, preOpeningWC: 0,
+  wdShows: 5, wdDays: 18, wdOccPct: 20, wdAtp: 220,
+  weShows: 5, weDays: 12, weOccPct: 55, weAtp: 320,
+  gstTicketPct: 18, distributorPct: 50, franchiseeTicketPct: 80,
+  fnbRatePerTicket: 180, franchiseeFnbPct: 80, fnbGstPct: 5, fnbCogsPct: 25,
+  adQty: 40, adRate: 10000, agencyPct: 30, franchiseeAdPct: 80,
+  rent: 500000, cam: 80000, internet: 15000, electricity: 180000, amc: 40000, insurance: 15000,
+  admin: 50000, operators: 50000, fnbStaff: 150000, housekeeping: 60000, security: 50000, marketingPct: 2,
+  growthPct: 8,
+};
+
+function formatFullINR(amount) {
+  if (amount === null || amount === undefined) return '₹0';
+  const num = Math.round(Number(amount));
+  if (isNaN(num) || !isFinite(num)) return '₹0';
+  const sign = num < 0 ? '-' : '';
+  const absStr = Math.abs(num).toString();
+  if (absStr.length <= 3) return `${sign}₹${absStr}`;
+  const last3 = absStr.slice(-3);
+  const other = absStr.slice(0, -3);
+  const formattedOther = other.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
+  return `${sign}₹${formattedOther},${last3}`;
+}
+
+function fmtINR(n) {
+  const sign = n < 0 ? '-' : '';
+  n = Math.abs(n);
+  if (n >= 1e7) return sign + '₹' + (n / 1e7).toFixed(2) + ' Cr';
+  if (n >= 1e5) return sign + '₹' + (n / 1e5).toFixed(2) + ' L';
+  return sign + '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+const STORAGE_KEY = 'connplex_roi_calculator_v3';
+
+function loadStoredInputs() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return { ...DEFAULTS, ...parsed };
+    }
+  } catch (e) {}
+  return { ...DEFAULTS };
+}
+
+class Component extends DCLogic {
+  state = { inputs: loadStoredInputs(), presenting: false };
+
+  updateField(key, value) {
+    this.setState(s => {
+      const updated = { ...s.inputs, [key]: value };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      } catch (e) {}
+      return { inputs: updated };
+    });
+  }
+
+  setField(key) {
+    return (e) => this.updateField(key, e.target.value);
+  }
+
+  setNumField(key) {
+    const isInteger = ['sofaQty', 'reclinerQty', 'duoQty', 'screens', 'wdShows', 'wdDays', 'weShows', 'weDays', 'adQty', 'banquetBookings'].includes(key);
+    return (e) => {
+      const val = e.target.value;
+      if (val === '') {
+        this.updateField(key, 0);
+        return;
+      }
+      let n = isInteger ? parseInt(val, 10) : parseFloat(val);
+      if (isNaN(n) || !isFinite(n) || n < 0) n = 0;
+      this.updateField(key, n);
+    };
+  }
+
+  resetDefaults = () => {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {}
+    this.setState({ inputs: { ...DEFAULTS } });
+  };
+
+  togglePresent = () => this.setState(s => ({ presenting: !s.presenting }));
+
+  compute() {
+    const i = this.state.inputs || {};
+    const num = (v) => {
+      const n = Number(v);
+      return isNaN(n) || !isFinite(n) || n < 0 ? 0 : n;
+    };
+    const pct = (v) => num(v) / 100;
+
+    // 1. Seating calculations
+    const sofaPrice = num(i.sofaPrice);
+    const sofaQty = Math.round(num(i.sofaQty));
+    const sofaTotal = sofaPrice * sofaQty;
+
+    const reclinerPrice = num(i.reclinerPrice);
+    const reclinerQty = Math.round(num(i.reclinerQty));
+    const reclinerTotal = reclinerPrice * reclinerQty;
+
+    const duoPrice = num(i.duoPrice);
+    const duoQty = Math.round(num(i.duoQty));
+    const duoTotal = duoPrice * duoQty;
+
+    const screens = Math.max(1, Math.round(num(i.screens)) || 1);
+    const franchiseFeePerScreen = num(i.franchiseFeePerScreen);
+    const franchiseTotal = franchiseFeePerScreen * screens;
+
+    // 2. Seating + Franchise Subtotal
+    const seatingSubtotal = sofaTotal + reclinerTotal + duoTotal + franchiseTotal;
+
+    // 3. Foyer Fit-Out
+    const foyerRate = num(i.foyerRate);
+    const foyerSqft = num(i.foyerSqft);
+    const foyerTotal = foyerRate * foyerSqft;
+
+    // 4. Total Auditorium + Foyer Investment
+    const auditoriumFoyerTotal = seatingSubtotal + foyerTotal;
+
+    // 5. GST Calculation on Total Auditorium + Foyer
+    const gstCapexPct = num(i.gstCapexPct);
+    const gstAmount = auditoriumFoyerTotal * pct(gstCapexPct);
+
+    // 6. TOTAL INVESTMENT OF THE THEATRE
+    const grandTotal = auditoriumFoyerTotal + gstAmount;
+
+    // Overall capex including working capital if any
+    const preOpeningWC = num(i.preOpeningWC);
+    const totalInvestment = grandTotal + preOpeningWC;
+
+    const totalSeats = sofaQty + reclinerQty + duoQty;
+
+    const wdSeatShows = totalSeats * (i.wdShows||0) * (i.wdDays||0);
+    const wdTickets = wdSeatShows * pct(i.wdOccPct);
+    const wdRevenue = wdTickets * (i.wdAtp||0);
+    const weSeatShows = totalSeats * (i.weShows||0) * (i.weDays||0);
+    const weTickets = weSeatShows * pct(i.weOccPct);
+    const weRevenue = weTickets * (i.weAtp||0);
+
+    const totalSeatShows = wdSeatShows + weSeatShows;
+    const totalTickets = wdTickets + weTickets;
+    const blendedOcc = totalSeatShows > 0 ? totalTickets / totalSeatShows : 0;
+    const grossTicketM = wdRevenue + weRevenue;
+    const gstOnTicketsM = grossTicketM * pct(i.gstTicketPct);
+    const distributorM = (grossTicketM - gstOnTicketsM) * pct(i.distributorPct);
+    const exhibitorNetM = grossTicketM - gstOnTicketsM - distributorM;
+    const franchiseeTicketM = exhibitorNetM * pct(i.franchiseeTicketPct);
+    const franchiseeTicketA = franchiseeTicketM * 12;
+
+    const banquetRate = totalSeats * (Number(i.banquetRatePerSeat) || 99);
+    const banquetGross = (Number(i.banquetBookings) || 0) * banquetRate;
+    const concessionsM = (i.fnbRatePerTicket||0) * totalTickets;
+    const grossFnbM = concessionsM + banquetGross;
+    const fnbGstAmt = grossFnbM * pct(i.fnbGstPct) / (1 + pct(i.fnbGstPct));
+    const fnbCogsAmt = grossFnbM * pct(i.fnbCogsPct);
+    const netFnbM = grossFnbM - fnbGstAmt - fnbCogsAmt;
+    const franchiseeFnbM = netFnbM * pct(i.franchiseeFnbPct);
+    const franchiseeFnbA = franchiseeFnbM * 12;
+
+    const grossAdM = (i.adQty||0) * (i.adRate||0);
+    const agencyCommission = grossAdM * pct(i.agencyPct);
+    const netAdM = grossAdM - agencyCommission;
+    const franchiseeAdM = netAdM * pct(i.franchiseeAdPct);
+    const franchiseeAdA = franchiseeAdM * 12;
+
+    const totalIncomeM = franchiseeTicketM + franchiseeFnbM + franchiseeAdM;
+    const totalIncomeA = totalIncomeM * 12;
+    const marketingM = (franchiseeTicketM + franchiseeFnbM) * pct(i.marketingPct);
+    const opexM = (i.rent||0)+(i.cam||0)+(i.internet||0)+(i.electricity||0)+(i.amc||0)+(i.insurance||0)+(i.admin||0)+(i.operators||0)+(i.fnbStaff||0)+(i.housekeeping||0)+(i.security||0)+marketingM;
+    const opexA = opexM * 12;
+
+    const netProfitM = totalIncomeM - opexM;
+    const netProfitY1 = netProfitM * 12;
+    const netProfitY2 = netProfitY1 * (1 + pct(i.growthPct));
+    const netProfitY3 = netProfitY2 * (1 + pct(i.growthPct));
+
+    const roi = totalInvestment > 0 ? netProfitY1 / totalInvestment : 0;
+    const payback = netProfitY1 > 0 ? totalInvestment / netProfitY1 : 0;
+
+    return {
+      totalSeats,
+      sofaPrice, sofaQty, sofaTotal,
+      reclinerPrice, reclinerQty, reclinerTotal,
+      duoPrice, duoQty, duoTotal,
+      screens, franchiseFeePerScreen, franchiseTotal,
+      seatingSubtotal,
+      foyerRate, foyerSqft, foyerTotal,
+      auditoriumFoyerTotal,
+      gstCapexPct, gstAmount,
+      grandTotal,
+      preOpeningWC,
+      totalInvestment,
+      blendedOcc, franchiseeTicketM, franchiseeTicketA, franchiseeFnbM, franchiseeFnbA, franchiseeAdM, franchiseeAdA,
+      totalIncomeM, totalIncomeA, opexM, opexA, netProfitM, netProfitY1, netProfitY2, netProfitY3, roi, payback,
+    };
+  }
+
+  renderVals() {
+    const c = this.compute();
+    const streamsRaw = [
+      { name: 'Tickets', monthly: c.franchiseeTicketM, color: 'var(--color-accent)' },
+      { name: 'Food & Beverage', monthly: c.franchiseeFnbM, color: 'var(--color-accent-2)' },
+      { name: 'Advertisement', monthly: c.franchiseeAdM, color: 'var(--color-neutral-500)' },
+    ];
+    const streamTotal = streamsRaw.reduce((s, x) => s + x.monthly, 0) || 1;
+    const maxStream = Math.max(...streamsRaw.map(s => s.monthly), 1);
+    const revenueStreams = streamsRaw.map(s => ({
+      name: s.name, formatted: fmtINR(s.monthly) + ' / mo',
+      pct: Math.round((s.monthly / maxStream) * 100) + '%',
+      sharePct: Math.round((s.monthly / streamTotal) * 100) + '%',
+      color: s.color,
+    }));
+
+    let acc = 0;
+    const gradParts = streamsRaw.map(s => {
+      const start = (acc / streamTotal) * 360;
+      acc += s.monthly;
+      const end = (acc / streamTotal) * 360;
+      return `${s.color} ${start}deg ${end}deg`;
+    });
+    const donutGradient = `conic-gradient(${gradParts.join(',')})`;
+
+    const years = [
+      { label: 'Year 1', value: c.netProfitY1, color: 'var(--color-neutral-400)' },
+      { label: 'Year 2', value: c.netProfitY2, color: 'var(--color-accent-2)' },
+      { label: 'Year 3', value: c.netProfitY3, color: 'var(--color-accent)' },
+    ];
+    const maxYear = Math.max(...years.map(y => y.value), 1);
+    const yearBars = years.map(y => ({ label: y.label, formatted: fmtINR(y.value), color: y.color, height: Math.max(6, Math.round((y.value / maxYear) * 100)) + '%' }));
+
+    const invRaw = [
+      { name: 'Seating + Franchise Fee', value: c.seatingSubtotal },
+      { name: 'Foyer / Lobby Fit-Out', value: c.foyerTotal },
+      { name: 'GST on Capex', value: c.gstAmount },
+    ];
+    if (c.preOpeningWC > 0) {
+      invRaw.push({ name: 'Pre-Opening & Working Capital', value: c.preOpeningWC });
+    }
+    const maxInv = Math.max(...invRaw.map(x => x.value), 1);
+    const investmentBars = invRaw.map(x => ({ name: x.name, formatted: fmtINR(x.value), pct: Math.round((x.value / maxInv) * 100) + '%' }));
+
+    const inv = {
+      sofaPrice: formatFullINR(c.sofaPrice),
+      sofaTotal: formatFullINR(c.sofaTotal),
+      reclinerPrice: formatFullINR(c.reclinerPrice),
+      reclinerTotal: formatFullINR(c.reclinerTotal),
+      duoPrice: formatFullINR(c.duoPrice),
+      duoTotal: formatFullINR(c.duoTotal),
+      franchiseFee: formatFullINR(c.franchiseFeePerScreen),
+      franchiseTotal: formatFullINR(c.franchiseTotal),
+      seatingSubtotal: formatFullINR(c.seatingSubtotal),
+      foyerRate: formatFullINR(c.foyerRate),
+      foyerTotal: formatFullINR(c.foyerTotal),
+      auditoriumFoyerTotal: formatFullINR(c.auditoriumFoyerTotal),
+      gstAmount: formatFullINR(c.gstAmount),
+      grandTotal: formatFullINR(c.grandTotal),
+    };
+
+    const textFields = ['city', 'state', 'prospectName'];
+    const numFields = ['screens','sofaPrice','sofaQty','reclinerPrice','reclinerQty','duoPrice','duoQty',
+      'franchiseFeePerScreen','foyerSqft','foyerRate','gstCapexPct','preOpeningWC',
+      'wdShows','wdDays','wdOccPct','wdAtp','weShows','weDays','weOccPct','weAtp',
+      'gstTicketPct','distributorPct','franchiseeTicketPct','fnbRatePerTicket','franchiseeFnbPct',
+      'fnbGstPct','fnbCogsPct','banquetBookings','banquetRatePerSeat','adQty','adRate','agencyPct','franchiseeAdPct',
+      'rent','cam','internet','electricity','amc','insurance','admin','operators','fnbStaff',
+      'housekeeping','security','marketingPct','growthPct'];
+    const fieldHandlers = {};
+    textFields.forEach(k => { fieldHandlers[k] = this.setField(k); });
+    numFields.forEach(k => { fieldHandlers[k] = this.setNumField(k); });
+
+    return {
+      inputs: this.state.inputs,
+      presenting: this.state.presenting,
+      notPresenting: !this.state.presenting,
+      presentLabel: this.state.presenting ? 'Exit presentation' : 'Present',
+      hasProspectName: !!this.state.inputs.prospectName,
+      fieldHandlers,
+      resetDefaults: this.resetDefaults,
+      togglePresent: this.togglePresent,
+      totalSeats: c.totalSeats,
+      inv,
+      kpi: {
+        totalInvestment: formatFullINR(c.grandTotal),
+        netProfitY1: fmtINR(c.netProfitY1),
+        roi: (c.roi * 100).toFixed(2) + '%',
+        payback: c.payback.toFixed(2) + ' yrs',
+        occupancy: (c.blendedOcc * 100).toFixed(1) + '%',
+      },
+      revenueStreams, donutGradient, yearBars, investmentBars,
+      summary: {
+        ticketM: fmtINR(c.franchiseeTicketM), ticketA: fmtINR(c.franchiseeTicketA),
+        fnbM: fmtINR(c.franchiseeFnbM), fnbA: fmtINR(c.franchiseeFnbA),
+        adM: fmtINR(c.franchiseeAdM), adA: fmtINR(c.franchiseeAdA),
+        totalIncomeM: fmtINR(c.totalIncomeM), totalIncomeA: fmtINR(c.totalIncomeA),
+        opexM: fmtINR(c.opexM), opexA: fmtINR(c.opexA),
+        netM: fmtINR(c.netProfitM), netA: fmtINR(c.netProfitY1),
+      },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

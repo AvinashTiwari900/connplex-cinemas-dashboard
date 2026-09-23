@@ -5,7 +5,7 @@ export const FRANCHISE_DEFAULTS = {
   state: 'Gujarat',
   prospectName: 'ABC Investments',
   screens: 3,
-  cinemaFormat: 'Signature Luxury Recliner',
+  cinemaFormat: 'Signature',
 
   // Seating & Auditorium Investment
   sofaPrice: 85000,

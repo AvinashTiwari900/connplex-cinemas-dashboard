@@ -148,7 +148,7 @@
       state: 'Gujarat',
       prospectName: 'ABC Investments',
       screens: 3,
-      cinemaFormat: 'Signature Luxury Recliner',
+      cinemaFormat: 'Signature',
 
       // Seating & Auditorium Capex
       sofaPrice: 85000,
@@ -1052,7 +1052,22 @@
       const [scenarios, setScenarios] = useState(() => {
         try {
           const saved = localStorage.getItem('connplex_scenarios_v3');
-          return saved ? JSON.parse(saved) : INITIAL_SCENARIOS;
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            const normalizeFormat = (fmt) => {
+              if (fmt === 'Luxuriance' || fmt === 'Luxierance') return 'Luxuriance';
+              if (fmt === 'Smart') return 'Smart';
+              return 'Signature';
+            };
+            return parsed.map(s => ({
+              ...s,
+              inputs: {
+                ...s.inputs,
+                cinemaFormat: normalizeFormat(s.inputs?.cinemaFormat)
+              }
+            }));
+          }
+          return INITIAL_SCENARIOS;
         } catch (e) {
           return INITIAL_SCENARIOS;
         }
@@ -1515,13 +1530,24 @@
                           />
                         </div>
                         <div>
-                          <label className="text-[10px] uppercase font-bold text-slate-500 block mb-1.5">Cinema Format</label>
-                          <input
-                            type="text"
-                            value={inputs.cinemaFormat}
-                            onChange={(e) => updateField('cinemaFormat', e.target.value)}
-                            className="w-full h-9 px-3 bg-white border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:border-amber-500 focus:ring-2 focus:ring-amber-500/10 outline-none"
-                          />
+                          <label htmlFor="cinema-format" className="text-[10px] uppercase font-bold text-slate-500 block mb-1.5">Cinema Format</label>
+                          <div className="relative">
+                            <select
+                              id="cinema-format"
+                              value={inputs.cinemaFormat}
+                              onChange={(e) => updateField('cinemaFormat', e.target.value)}
+                              className="w-full h-9 px-3 pr-8 bg-white border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:border-amber-500 focus:ring-2 focus:ring-amber-500/10 outline-none cursor-pointer appearance-none"
+                            >
+                              <option value="Luxuriance">Luxuriance</option>
+                              <option value="Signature">Signature</option>
+                              <option value="Smart">Smart</option>
+                            </select>
+                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-500">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                              </svg>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
