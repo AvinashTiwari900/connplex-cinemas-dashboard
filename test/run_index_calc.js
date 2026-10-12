@@ -8,18 +8,18 @@ const FRANCHISE_DEFAULTS = {
 
       // Seating & Auditorium Capex
       sofaPrice: 85000,
-      sofaQty: 200,
+      sofaQty: 80,
       reclinerPrice: 150000,
       reclinerQty: 50,
       duoPrice: 125000,
-      duoQty: 20,
+      duoQty: 70,
       franchiseFeePerScreen: 500000,
 
       // Foyer, GST & Working Capital
-      foyerSqft: 0,
-      foyerRate: 3500,
+      foyerSqft: 2200,
+      foyerRate: 3000,
       gstCapexPct: 18,
-      preOpeningWC: 0,
+      preOpeningWC: 1500000,
 
       // Ticket Revenue Assumptions (Weekdays: Mon-Thu)
       wdShows: 5,

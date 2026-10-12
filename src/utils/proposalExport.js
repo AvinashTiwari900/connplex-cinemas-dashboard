@@ -14,12 +14,6 @@ export function printInvestorProposal(inputs, dashboardResults) {
     return;
   }
 
-  const currentDate = new Date().toLocaleDateString('en-IN', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
-
   const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +23,26 @@ export function printInvestorProposal(inputs, dashboardResults) {
   <style>
     @page {
       size: A4;
-      margin: 15mm 15mm 18mm 15mm;
+      margin: 0;
+    }
+    @media print {
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .page-container {
+        padding: 16mm 18mm 18mm 18mm !important;
+        box-sizing: border-box;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+      .print-btn {
+        display: none !important;
+      }
+      table, figure, .kpi-grid, .kpi-card, .prospect-banner, tr, .disclaimer, .bullet-box, .section-title {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
     }
     body {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
@@ -39,6 +52,11 @@ export function printInvestorProposal(inputs, dashboardResults) {
       font-size: 11pt;
       margin: 0;
       padding: 0;
+    }
+    .page-container {
+      padding: 16mm 18mm 18mm 18mm;
+      max-width: 100%;
+      box-sizing: border-box;
     }
     .page-header {
       border-bottom: 2px solid #b38e44;
@@ -210,23 +228,18 @@ export function printInvestorProposal(inputs, dashboardResults) {
       font-size: 11pt;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
-    @media print {
-      .print-btn {
-        display: none;
-      }
-    }
   </style>
 </head>
 <body>
   <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
 
+  <div class="page-container">
   <div class="page-header">
     <div>
       <h1 class="brand-title">CONNPLEX CINEMAS</h1>
       <div class="brand-subtitle">Luxury Recliner Multiplex • FOFO Franchise Investment Model</div>
     </div>
     <div class="doc-meta">
-      <strong>Date:</strong> ${currentDate}<br>
       <strong>Location:</strong> ${inputs.city}, ${inputs.state}
     </div>
   </div>
@@ -490,6 +503,7 @@ export function printInvestorProposal(inputs, dashboardResults) {
 
   <div class="disclaimer">
     <strong>Important Financial Disclaimer:</strong> All projections are based on the assumptions entered into this model and are intended for discussion and planning purposes only. Actual performance may vary based on location, occupancy, ticket pricing, film performance, operating costs, taxes, commercial terms and other market conditions. This document does not constitute a legal guarantee or representation of returns.
+  </div>
   </div>
 </body>
 </html>

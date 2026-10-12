@@ -129,6 +129,12 @@
     input[type="number"]::-webkit-outer-spin-button {
       opacity: 0.3;
     }
+
+    @media print {
+      @page {
+        margin: 0;
+      }
+    }
   </style>
 </head>
 
@@ -152,18 +158,18 @@
 
       // Seating & Auditorium Capex
       sofaPrice: 85000,
-      sofaQty: 200,
+      sofaQty: 80,
       reclinerPrice: 150000,
       reclinerQty: 50,
       duoPrice: 125000,
-      duoQty: 20,
+      duoQty: 70,
       franchiseFeePerScreen: 500000,
 
       // Foyer, GST & Working Capital
-      foyerSqft: 0,
-      foyerRate: 3500,
+      foyerSqft: 2200,
+      foyerRate: 3000,
       gstCapexPct: 18,
-      preOpeningWC: 0,
+      preOpeningWC: 1500000,
 
       // Ticket Revenue Assumptions (Weekdays: Mon-Thu)
       wdShows: 5,
@@ -702,7 +708,6 @@
         alert('Please allow popups to generate and print the Investor Proposal.');
         return;
       }
-      const currentDate = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 
       const html = `<!DOCTYPE html>
 <html lang="en">
@@ -710,8 +715,29 @@
   <meta charset="UTF-8">
   <title>CONNPLEX CINEMAS — Franchise Investor Proposal (${inputs.city})</title>
   <style>
-    @page { size: A4; margin: 15mm 15mm 18mm 15mm; }
+    @page {
+      size: A4;
+      margin: 0;
+    }
+    @media print {
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .page-container {
+        padding: 16mm 18mm 18mm 18mm !important;
+        box-sizing: border-box;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+      .print-btn { display: none !important; }
+      table, figure, .kpi-grid, .kpi-card, .prospect-banner, tr, .disclaimer, .bullet-box, .section-title {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
     body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; color: #1e293b; background: #fff; line-height: 1.45; font-size: 11pt; margin: 0; padding: 0; }
+    .page-container { padding: 16mm 18mm 18mm 18mm; max-width: 100%; box-sizing: border-box; }
     .page-header { border-bottom: 2px solid #b88628; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
     .brand-title { font-size: 20pt; font-weight: 800; letter-spacing: 0.08em; color: #0f172a; text-transform: uppercase; margin: 0; }
     .brand-subtitle { font-size: 9pt; letter-spacing: 0.12em; text-transform: uppercase; color: #b88628; font-weight: 700; margin-top: 4px; }
@@ -733,18 +759,17 @@
     tr.total-row { background: #e2e8f0; font-weight: 800; }
     .disclaimer { font-size: 8pt; color: #64748b; line-height: 1.45; border-top: 1px solid #e2e8f0; padding-top: 10px; margin-top: 24px; page-break-inside: avoid; }
     .print-btn { position: fixed; top: 20px; right: 20px; background: #0f172a; color: #fff; border: 1px solid #0f172a; padding: 10px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 11pt; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    @media print { .print-btn { display: none; } }
   </style>
 </head>
 <body>
   <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+  <div class="page-container">
   <div class="page-header">
     <div>
       <h1 class="brand-title">CONNPLEX CINEMAS</h1>
       <div class="brand-subtitle">Luxury Recliner Multiplex • FOFO Franchise Investment Model</div>
     </div>
     <div class="doc-meta">
-      <strong>Date:</strong> ${currentDate}<br>
       <strong>Location:</strong> ${inputs.city}, ${inputs.state}
     </div>
   </div>
@@ -833,6 +858,7 @@
 
   <div class="disclaimer">
     <strong>Important Financial Disclaimer:</strong> All projections are based on the assumptions entered into this model and are intended for discussion and planning purposes only. Actual performance may vary based on location, occupancy, ticket pricing, film performance, operating costs, taxes, commercial terms and other market conditions. This document does not constitute a legal guarantee or representation of returns.
+  </div>
   </div>
 </body>
 </html>`;
